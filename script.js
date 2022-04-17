@@ -61,7 +61,7 @@ const compScore = document.querySelector("#comp-score")
 const popup = document.querySelector(".popup")
 const playAgain = document.querySelector(".popup button")
 const body = document.querySelector("body")
-const points=document.querySelector("#points")
+const points = document.querySelector("#points")
 
 let running = true
 
@@ -109,7 +109,7 @@ function updateScoreEl() {
 function announceWinner() {
     if (playerScoreNum == 3 || compScoreNum == 3) {
         running = false
-        points.textContent=`${playerScoreNum}:${compScoreNum}`
+        points.textContent = `${playerScoreNum}:${compScoreNum}`
 
         if (playerScoreNum > compScoreNum) {
             showPopup("You Won!")
@@ -124,7 +124,7 @@ function showPopup(text) {
     winner.textContent = text
     body.classList.add("overlay")
     popup.classList.add("open-popup")
-    body.addEventListener("keypress",reset)
+    body.addEventListener("keypress", reset)
 }
 function hidePopup() {
 
@@ -133,7 +133,7 @@ function hidePopup() {
 }
 function reset() {
     hidePopup()
-    body.removeEventListener("keypress",reset)
+    body.removeEventListener("keypress", reset)
     running = true
     playerScoreNum = 0
     compScoreNum = 0

@@ -1,54 +1,14 @@
-function updateResultInfo(pChoice, cChoice) {
-    switch (pChoice) {
-        case "rock":
-            switch (cChoice) {
-                case "rock":
-                    result.textContent = "Tie"
-                    info.textContent = "Rock can't beat rock"
-                    break
-                case "paper":
-                    result.textContent = "Computer scored a point"
-                    info.textContent = "Rock was catched by paper"
-                    break
-                case "scissors":
-                    result.textContent = "You scored a point"
-                    info.textContent = "Rock breaks the scissors"
-                    break
-            }
-            break
-        case "paper":
-            switch (cChoice) {
-                case "rock":
-                    result.textContent = "You scored a point"
-                    info.textContent = "Paper catched the rock"
-                    break
-                case "paper":
-                    result.textContent = "Tie"
-                    info.textContent = "Paper can't beat paper"
-                    break
-                case "scissors":
-                    result.textContent = "Computer scored a point"
-                    info.textContent = "Paper was cut by sciccors"
-                    break
-            }
-            break
-        case "scissors":
-            switch (cChoice) {
-                case "rock":
-                    result.textContent = "Computer scored a point"
-                    info.textContent = "Scissors were shattered by rock"
-                    break
-                case "paper":
-                    result.textContent = "You scored a point"
-                    info.textContent = "Scissors cut the paper"
-                    break
-                case "scissors":
-                    result.textContent = "Tie"
-                    info.textContent = "Scissors can't beat  scissors"
-                    break
-            }
-            break
+function returnWinner(pChoice, cChoice) {
+    if ((pChoice + 1) % 3 == cChoice) {
+        return "comp"
     }
+    else if (pChoice == cChoice) {
+        return "tie";
+    }
+    else {
+        return "player"
+    }
+
 }
 
 const options = document.querySelectorAll("#options img")
@@ -77,9 +37,10 @@ options.forEach(el => {
     el.addEventListener("click", () => {
         if (running) {
             let playerChoice = el.getAttribute("data-value")
-            let compChoice = allChoices[Math.floor(Math.random() * 3)]
-            updateStage(playerChoice, compChoice)
-            updateResultInfo(playerChoice, compChoice)
+            let compChoice = Math.floor(Math.random() * 3)
+            updateStage(allChoices[playerChoice], allChoices[compChoice])
+            // updateResultInfo(playerChoice, compChoice)
+            updateInfoResults(returnWinner(playerChoice, compChoice), playerChoice, compChoice)
             updateScore()
             updateScoreEl()
             announceWinner()
@@ -87,6 +48,20 @@ options.forEach(el => {
     })
 })
 
+function updateInfoResults(winner, pChoice, cChoice) {
+    if (winner == "player") {
+        info.textContent = `${allChoices[pChoice]} beats ${allChoices[cChoice]}`
+        result.textContent = "You scored a point"
+    }
+    else if (winner == "comp") {
+        info.textContent = `${allChoices[pChoice]} is beaten by ${allChoices[cChoice]}`
+        result.textContent = "Computer scored a point"
+    }
+    else {
+        info.textContent = `${allChoices[pChoice]} ties with ${allChoices[cChoice]}`
+        result.textContent = "It's a tie"
+    }
+}
 function updateStage(pChoice, cChoice) {
     playerImg.setAttribute("src", `./images/${pChoice}.png`)
     compImg.setAttribute("src", `./images/${cChoice}.png`)

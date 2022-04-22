@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Patrick+Hand&display=swap" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <p id="result">First to score 3 points wins</p>
     <p id="info">Live update</p>
     <div id="stage">
-        <div><img src="./images/user.png" id="player-img" alt="">
-            <p class="score" id="player-score">Player: 0</p>
-        </div>
-        <div><img id="comp-img" src="./images/robot.png" alt="">
-            <p class="score" id="comp-score">Computer: 0</p>
-        </div>
+      <div>
+        <img src="./images/user.png" id="player-img" alt="" />
+        <p class="score" id="player-score">Player: 0</p>
+      </div>
+      <div>
+        <img id="comp-img" src="./images/robot.png" alt="" />
+        <p class="score" id="comp-score">Computer: 0</p>
+      </div>
     </div>
     <div id="options">
-        <img src="./images/rock.png" alt="" data-value="0">
-        <img src="./images/paper.png" alt="" data-value="1">
-        <img src="./images/scissors.png" alt="" data-value="2">
+      <img src="./images/rock.png" alt="" data-value="0" />
+      <img src="./images/paper.png" alt="" data-value="1" />
+      <img src="./images/scissors.png" alt="" data-value="2" />
     </div>
-    <dialog class="popup">
-        <p id="winner"></p>
-        <span id="points"></span>
-        <span id="hint">Press any key to</span>
-        <button type="button">Play again</button>
-    </dialog>
-</body>
-
+    <div class="popup">
+      <p id="winner"></p>
+      <span id="points"></span>
+      <span id="hint">Press any key to</span>
+      <button type="button">Play again</button>
+    </div>
+  </body>
 </html>

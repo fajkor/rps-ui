@@ -35,22 +35,24 @@ let winner = document.querySelector("#winner");
 const allChoices = ["rock", "paper", "scissors"];
 
 options.forEach((el) => {
-  el.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (running) {
+  el.addEventListener("click", (e) => { 
+    e.stopPropagation(); 
+    /* Suggestion: get rid of if block but leave the code inside the if block */
+      // if (running) { 
       let playerChoice = el.getAttribute("data-value");
       let compChoice = Math.floor(Math.random() * 3);
       updateStage(allChoices[playerChoice], allChoices[compChoice]);
       updateInfoResults(
-        findWinner(playerChoice, compChoice),
-        playerChoice,
+        findWinner(playerChoice, compChoice), 
+        playerChoice, 
         compChoice
       );
-      updateScoreEl();
+      updateScoreEl(); 
       announceWinner();
-    } else {
-      reset();
-    }
+    /* Suggestion: get rid of else and reset(); */
+    // } else { 
+      // reset();
+    // }
   });
 });
 
@@ -75,14 +77,20 @@ function updateInfoResults(winner, pChoice, cChoice) {
 function updateStage(pChoice, cChoice) {
   playerImg.setAttribute("src", `./images/${pChoice}.png`);
   compImg.setAttribute("src", `./images/${cChoice}.png`);
+  /* Suggestion: add a value to alt attribute as well */
+  playerImg.setAttribute("alt", `${pChoice}`);
+  compImg.setAttribute("alt", `${cChoice}`);
 }
-function updateScore() {
+
+/* I don't see this function being called anywhere. 
+Suggestion: get rid of this function */
+/* function updateScore() { 
   if (result.textContent.includes("You")) {
     playerScoreNum++;
   } else if (result.textContent.includes("Computer")) {
     compScoreNum++;
   }
-}
+} */
 
 function updateScoreEl() {
   playerScore.textContent = `Player: ${playerScoreNum}`;
@@ -91,7 +99,8 @@ function updateScoreEl() {
 
 function announceWinner() {
   if (playerScoreNum == 3 || compScoreNum == 3) {
-    running = false;
+    /* Suggestion: delete the below line */
+    // running = false; 
     points.textContent = `${playerScoreNum}:${compScoreNum}`;
 
     if (playerScoreNum > compScoreNum) {
@@ -103,7 +112,7 @@ function announceWinner() {
 }
 
 function showPopup(text) {
-  console.log("showing popup");
+  console.log("showing popup"); 
   winner.textContent = text;
   body.classList.add("overlay");
   popup.classList.add("open-popup");
@@ -117,16 +126,19 @@ function hidePopup() {
 function reset() {
   hidePopup();
   body.removeEventListener("keypress", reset);
-  body.removeEventListener("click", reset);
+  body.removeEventListener("click", reset); 
   resultStyle.color = "";
   infoStyle.color = "";
-  running = true;
+  // running = true; /* Suggestion: don't need it, remove it */
   playerScoreNum = 0;
   compScoreNum = 0;
   result.textContent = "First to score 3 points wins";
   info.textContent = "Live update";
   updateStage("user", "robot");
   updateScoreEl();
+    /* Reset alt attributes. Since I took the liberty to add a value to alt attributes in index.html, I thought I should reset those too. */
+    playerImg.setAttribute("alt", "A Player Picture");
+    compImg.setAttribute("alt", "A Robot Picture");
 }
 
 playAgain.addEventListener("click", reset);

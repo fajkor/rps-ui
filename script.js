@@ -25,7 +25,7 @@ const points = document.querySelector("#points");
 const resultStyle = result.style;
 const infoStyle = info.style;
 
-let running = true;
+// delete this variable: let running = true;
 
 let playerScoreNum = 0;
 let compScoreNum = 0;
